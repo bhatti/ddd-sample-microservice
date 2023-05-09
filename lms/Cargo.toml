@@ -1,0 +1,45 @@
+[package]
+name = "lms"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+default-run = "catalog"
+
+[[bin]]
+name = "catalog"
+path = "src/catalog/bin/main.rs"
+
+[[bin]]
+name = "patrons"
+path = "src/patrons/bin/main.rs"
+
+[[bin]]
+name = "checkout"
+path = "src/checkout/bin/main.rs"
+
+[[bin]]
+name = "hold"
+path = "src/hold/bin/main.rs"
+
+[dependencies]
+async_once = "0.2.6"
+async-trait = "0.1.68"
+async-recursion = "1.0.4"
+aws-config = "0.55.2"
+aws-sdk-dynamodb = "0.27.0"
+aws-sdk-sns = "0.27.0"
+axum = "0.6.18"
+lambda_http = { version = "0.8.0", default-features = false, features = ["apigw_http"] }
+lambda_runtime = "0.8.0"
+lazy_static = "1.4.0"
+simple-error = "0.2.3"
+serde = "1.0.160"
+serde_json = "1.0.96"
+tokio = { version = "1", features = ["macros"] }
+chrono = { version = "0.4.24", features = ["serde"] }
+rand = "0.8"
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", default-features = false, features = ["ansi", "fmt", "json"] }
+uuid = { version = "1.3.1", features = ["v4", "v6", "v7"] }
