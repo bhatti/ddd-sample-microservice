@@ -22,7 +22,7 @@ number of books that can be held or checkout at a time.
 ## Domain Model
 Following domain model was defined as a result of above use-stories and an [event-storming](https://www.eventstorming.com/) exercise:
 
-[class-diagram](images/class-diagram.png)
+![class-diagram](images/class-diagram.png)
 
 ### Party Pattern
 Above design uses [party-pattern](https://www.martinfowler.com/apsupp/accountability.pdf) to model patrons, library administrator and library branches as they can share a lot of common
@@ -41,7 +41,7 @@ The Hold class abstracts the data when holding a book that is not currently avai
 ## Components and Modules
 Using above domain model, the library management application was divided into following modules:
 
-[components](images/packages.png)
+![components](images/packages.png)
 
 ### core module
 The core module abstracts common domain model, domain events and interfaces for command pattern, repository and controllers.
