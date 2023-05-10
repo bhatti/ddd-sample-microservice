@@ -103,6 +103,7 @@ is used for defining any optional data properties so that the compiler can enfor
 ## Tree structure
 Following tree structure shows the module and code structure:
 
+```
 ├── books
 │   ├── domain
 │   │   └── model.rs
@@ -219,7 +220,7 @@ Following tree structure shows the module and code structure:
 │   ├── date.rs
 │   └── ddb.rs
 └── utils.rs
-
+```
 ## Building and Testing
 See [lms/README.md](lms/README.md) for instructions on building and testing the sample application.
 
