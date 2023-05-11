@@ -7,7 +7,7 @@ use lambda_http::{run, Error};
 use crate::utils::ddb::setup_tracing;
 use crate::core::controller::AppState;
 use crate::core::repository::RepositoryStore;
-use crate::checkout::controller;
+use crate::checkout::controller::{checkout_book, return_book};
 
 const DEV_MODE: bool = true;
 
@@ -26,8 +26,8 @@ async fn main() -> Result<(), Error> {
     };
 
     let app = Router::new()
-        .route("/checkout", post(controller::checkout_book))
-        .route("/checkout/return", post(controller::return_book))
+        .route("/checkout", post(checkout_book))
+        .route("/checkout/return", post(return_book))
         .with_state(state);
 
     run(app).await

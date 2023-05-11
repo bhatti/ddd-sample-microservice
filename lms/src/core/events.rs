@@ -5,7 +5,7 @@ use uuid::Uuid;
 use crate::utils::date::{serializer};
 
 // DomainEventType defines type of event for domain changes
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum DomainEventType {
     Added,
     Updated,

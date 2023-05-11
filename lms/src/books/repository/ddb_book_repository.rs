@@ -180,19 +180,19 @@ impl BookRepository for DDBBookRepository {
 
 fn map_to_book(map: &HashMap<String, AttributeValue>) -> BookEntity {
     BookEntity {
-        dewey_decimal_id: parse_string_attribute("dewey_decimal_id", map).unwrap_or(String::from("")),
+        dewey_decimal_id: parse_string_attribute("dewey_decimal_id", map).unwrap_or_else(|| String::from("")),
         version: parse_number_attribute("version", map),
-        book_id: parse_string_attribute("book_id", map).unwrap_or(String::from("")),
-        author_id: parse_string_attribute("author_id", map).unwrap_or(String::from("")),
-        publisher_id: parse_string_attribute("publisher_id", map).unwrap_or(String::from("")),
-        language: parse_string_attribute("language", map).unwrap_or(String::from("")),
-        isbn: parse_string_attribute("isbn", map).unwrap_or(String::from("")),
-        title: parse_string_attribute("title", map).unwrap_or(String::from("")),
-        book_status: BookStatus::from(parse_string_attribute("book_status", map).unwrap_or(String::from(""))),
+        book_id: parse_string_attribute("book_id", map).unwrap_or_else(|| String::from("")),
+        author_id: parse_string_attribute("author_id", map).unwrap_or_else(|| String::from("")),
+        publisher_id: parse_string_attribute("publisher_id", map).unwrap_or_else(|| String::from("")),
+        language: parse_string_attribute("language", map).unwrap_or_else(|| String::from("")),
+        isbn: parse_string_attribute("isbn", map).unwrap_or_else(|| String::from("")),
+        title: parse_string_attribute("title", map).unwrap_or_else(|| String::from("")),
+        book_status: BookStatus::from(parse_string_attribute("book_status", map).unwrap_or_else(|| String::from(""))),
         restricted: parse_bool_attribute("restricted", map),
-        published_at: parse_date_attribute("published_at", map).unwrap_or(Utc::now().naive_utc()),
-        created_at: parse_date_attribute("created_at", map).unwrap_or(Utc::now().naive_utc()),
-        updated_at: parse_date_attribute("updated_at", map).unwrap_or(Utc::now().naive_utc()),
+        published_at: parse_date_attribute("published_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+        created_at: parse_date_attribute("created_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+        updated_at: parse_date_attribute("updated_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
     }
 }
 

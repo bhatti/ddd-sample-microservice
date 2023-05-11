@@ -110,9 +110,12 @@ mod tests {
     use crate::core::library::BookStatus;
     use crate::core::domain::Configuration;
     use crate::core::repository::RepositoryStore;
+    use crate::utils::ddb::{build_db_client, delete_table};
 
     lazy_static! {
         static ref SUT_SVC: AsyncOnce<Box<dyn CatalogService>> = AsyncOnce::new(async {
+                let client = build_db_client(RepositoryStore::LocalDynamoDB).await;
+                let _ = delete_table(&client, "books").await;
                 factory::create_catalog_service(&Configuration::new("test"), RepositoryStore::LocalDynamoDB).await
             });
     }

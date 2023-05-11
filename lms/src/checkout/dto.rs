@@ -4,7 +4,7 @@ use uuid::Uuid;
 use crate::books::domain::Book;
 use crate::core::library::CheckoutStatus;
 use crate::core::domain::Identifiable;
-use crate::patrons::domain::Patron;
+use crate::patrons::Patron;
 use crate::utils::date::{serializer};
 
 

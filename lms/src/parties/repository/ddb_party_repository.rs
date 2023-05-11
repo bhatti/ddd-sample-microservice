@@ -171,24 +171,24 @@ impl PartyRepository for DDBPartyRepository {
 impl From<&HashMap<String, AttributeValue>> for PartyEntity {
     fn from(map: &HashMap<String, AttributeValue>) -> Self {
         let roles: Vec<String> = serde_json::from_str(
-            parse_string_attribute("group_roles", map).unwrap_or(String::from("[]")).as_str()).unwrap_or(vec![]);
+            parse_string_attribute("group_roles", map).unwrap_or_else(|| String::from("[]")).as_str()).unwrap_or_default();
         PartyEntity {
-            party_id: parse_string_attribute("party_id", map).unwrap_or(String::from("")),
+            party_id: parse_string_attribute("party_id", map).unwrap_or_else(|| String::from("")),
             version: parse_number_attribute("version", map),
-            kind: PartyKind::from(parse_string_attribute("kind", map).unwrap_or(PartyKind::Patron.to_string())),
-            first_name: parse_string_attribute("first_name", map).unwrap_or(String::from("")),
-            last_name: parse_string_attribute("last_name", map).unwrap_or(String::from("")),
-            email: parse_string_attribute("email", map).unwrap_or(String::from("")),
+            kind: PartyKind::from(parse_string_attribute("kind", map).unwrap_or_else(|| PartyKind::Patron.to_string())),
+            first_name: parse_string_attribute("first_name", map).unwrap_or_else(|| String::from("")),
+            last_name: parse_string_attribute("last_name", map).unwrap_or_else(|| String::from("")),
+            email: parse_string_attribute("email", map).unwrap_or_else(|| String::from("")),
             under_13: parse_bool_attribute("under_13", map),
             group_roles: roles,
             num_holds: parse_number_attribute("num_holds", map),
             num_overdue: parse_number_attribute("num_overdue", map),
-            home_phone: Some(parse_string_attribute("home_phone", map).unwrap_or(String::from(""))),
-            cell_phone: Some(parse_string_attribute("cell_phone", map).unwrap_or(String::from(""))),
-            work_phone: Some(parse_string_attribute("work_phone", map).unwrap_or(String::from(""))),
-            address: AddressEntity::from_json(parse_string_attribute("address", map).unwrap_or(String::from("{}"))),
-            created_at: parse_date_attribute("created_at", map).unwrap_or(Utc::now().naive_utc()),
-            updated_at: parse_date_attribute("updated_at", map).unwrap_or(Utc::now().naive_utc()),
+            home_phone: Some(parse_string_attribute("home_phone", map).unwrap_or_else(|| String::from(""))),
+            cell_phone: Some(parse_string_attribute("cell_phone", map).unwrap_or_else(|| String::from(""))),
+            work_phone: Some(parse_string_attribute("work_phone", map).unwrap_or_else(|| String::from(""))),
+            address: AddressEntity::from_json(parse_string_attribute("address", map).unwrap_or_else(|| String::from("{}"))),
+            created_at: parse_date_attribute("created_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+            updated_at: parse_date_attribute("updated_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
         }
     }
 }

@@ -7,7 +7,7 @@ use lambda_http::{run, Error};
 use crate::utils::ddb::setup_tracing;
 use crate::core::controller::AppState;
 use crate::core::repository::RepositoryStore;
-use crate::catalog::controller;
+use crate::catalog::controller::{find_book_by_id, add_book, remove_book};
 
 // See https://docs.aws.amazon.com/lambda/latest/dg/lambda-rust.html
 // https://docs.aws.amazon.com/lambda/latest/dg/images-test.html
@@ -30,9 +30,9 @@ async fn main() -> Result<(), Error> {
     };
 
     let app = Router::new()
-        .route("/catalog", post(controller::add_book))
+        .route("/catalog", post(add_book))
         .route("/catalog/:id",
-               get(controller::find_book_by_id).delete(controller::remove_book))
+               get(find_book_by_id).delete(remove_book))
         .with_state(state);
 
     run(app).await

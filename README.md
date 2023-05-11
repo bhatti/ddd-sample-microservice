@@ -53,8 +53,7 @@ The parties module defines domain model for the party class and data access meth
 The books module defines domain model and data transfer model for books as well as repository for persisting and querying books using AWS DynamoDB.
 
 ### patrons module
-The patron module builts upon the parties module and defines service sub-module for business logic to query and perssit patrons. The patron module also includes controller, 
-command classes and binary/main module to define microservices based on AWS Lambda.
+The patron module built upon the parties module and defines service sub-module for business logic to query and persisting patrons. The patron module also includes controller, command classes and binary/main module to define microservices based on AWS Lambda.
 
 ### checkout module
 The checkout module implements services for checking out and returning book, which are then made available as microservices using controller, command and binary sub-modules.

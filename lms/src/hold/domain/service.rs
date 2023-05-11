@@ -14,7 +14,8 @@ use crate::hold::domain::HoldService;
 use crate::hold::domain::model::HoldEntity;
 use crate::hold::dto::HoldDto;
 use crate::hold::repository::HoldRepository;
-use crate::patrons::domain::{Patron, PatronService};
+use crate::patrons::domain::PatronService;
+use crate::patrons::Patron;
 
 pub(crate) struct HoldServiceImpl {
     branch_id: String,

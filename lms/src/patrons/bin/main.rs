@@ -7,7 +7,7 @@ use lambda_http::{run, Error};
 use crate::utils::ddb::setup_tracing;
 use crate::core::controller::AppState;
 use crate::core::repository::RepositoryStore;
-use crate::patrons::controller;
+use crate::patrons::controller::{add_patron, remove_patron, find_patron_by_id};
 
 const DEV_MODE: bool = true;
 
@@ -26,9 +26,9 @@ async fn main() -> Result<(), Error> {
     };
 
     let app = Router::new()
-        .route("/patrons", post(controller::add_patron))
+        .route("/patrons", post(add_patron))
         .route("/patrons/:id",
-               get(controller::find_patron_by_id).delete(controller::remove_patron))
+               get(find_patron_by_id).delete(remove_patron))
         .with_state(state);
 
     run(app).await

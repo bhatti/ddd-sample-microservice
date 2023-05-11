@@ -169,17 +169,17 @@ impl CheckoutRepository for DDBCheckoutRepository {
 impl From<&HashMap<String, AttributeValue>> for CheckoutEntity {
     fn from(map: &HashMap<String, AttributeValue>) -> Self {
         CheckoutEntity {
-            checkout_id: parse_string_attribute("checkout_id", map).unwrap_or(String::from("")),
+            checkout_id: parse_string_attribute("checkout_id", map).unwrap_or_else(|| String::from("")),
             version: parse_number_attribute("version", map),
-            branch_id: parse_string_attribute("branch_id", map).unwrap_or(String::from("")),
-            book_id: parse_string_attribute("book_id", map).unwrap_or(String::from("")),
-            patron_id: parse_string_attribute("patron_id", map).unwrap_or(String::from("")),
-            checkout_status: CheckoutStatus::from(parse_string_attribute("checkout_status", map).unwrap_or(CheckoutStatus::CheckedOut.to_string())),
+            branch_id: parse_string_attribute("branch_id", map).unwrap_or_else(|| String::from("")),
+            book_id: parse_string_attribute("book_id", map).unwrap_or_else(|| String::from("")),
+            patron_id: parse_string_attribute("patron_id", map).unwrap_or_else(|| String::from("")),
+            checkout_status: CheckoutStatus::from(parse_string_attribute("checkout_status", map).unwrap_or_else(|| CheckoutStatus::CheckedOut.to_string())),
             checkout_at: Default::default(),
-            due_at: parse_date_attribute("due_at", map).unwrap_or(Utc::now().naive_utc()),
+            due_at: parse_date_attribute("due_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
             returned_at: parse_date_attribute("returned_at", map),
-            created_at: parse_date_attribute("created_at", map).unwrap_or(Utc::now().naive_utc()),
-            updated_at: parse_date_attribute("updated_at", map).unwrap_or(Utc::now().naive_utc()),
+            created_at: parse_date_attribute("created_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+            updated_at: parse_date_attribute("updated_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
         }
     }
 }

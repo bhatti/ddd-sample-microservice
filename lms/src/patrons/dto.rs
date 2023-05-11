@@ -3,7 +3,7 @@ use uuid::Uuid;
 use serde::{Deserialize, Serialize};
 use crate::core::domain::Identifiable;
 use crate::core::library::Role;
-use crate::patrons::domain::Patron;
+use crate::patrons::Patron;
 
 
 // Patron abstracts library member.
@@ -95,7 +95,7 @@ impl Patron for PatronDto {
 #[cfg(test)]
 mod tests {
     use crate::core::library::Role;
-    use crate::patrons::domain::Patron;
+    use crate::patrons::Patron;
     use crate::patrons::dto::PatronDto;
 
     #[tokio::test]

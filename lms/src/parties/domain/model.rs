@@ -65,7 +65,7 @@ impl PartyEntity {
 
 impl AddressEntity {
     pub fn to_json(&self) -> String {
-        serde_json::to_string(self).unwrap_or("{}".to_string())
+        serde_json::to_string(self).unwrap_or_else(|_| "{}".to_string())
     }
     pub fn from_json(data: String) -> Option<AddressEntity> {
         if let Ok(addr) = serde_json::from_str(data.as_str()) {

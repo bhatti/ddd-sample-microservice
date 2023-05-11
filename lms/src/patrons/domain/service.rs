@@ -124,9 +124,12 @@ mod tests {
     use crate::patrons::domain::PatronService;
     use crate::patrons::dto::PatronDto;
     use crate::patrons::factory;
+    use crate::utils::ddb::{build_db_client, delete_table};
 
     lazy_static! {
         static ref SUT_SVC: AsyncOnce<Box<dyn PatronService>> = AsyncOnce::new(async {
+                let client = build_db_client(RepositoryStore::LocalDynamoDB).await;
+                let _ = delete_table(&client, "parties").await;
                 factory::create_patron_service(&Configuration::new("test"), RepositoryStore::LocalDynamoDB).await
             });
     }

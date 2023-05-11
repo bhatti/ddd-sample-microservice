@@ -11,7 +11,8 @@ use crate::core::domain::{Configuration, Identifiable};
 use crate::core::events::DomainEvent;
 use crate::core::library::{BookStatus, CheckoutStatus, LibraryError, LibraryResult, PaginatedResult};
 use crate::gateway::events::EventPublisher;
-use crate::patrons::domain::{Patron, PatronService};
+use crate::patrons::domain::PatronService;
+use crate::patrons::Patron;
 
 pub(crate) struct CheckoutServiceImpl {
     branch_id: String,

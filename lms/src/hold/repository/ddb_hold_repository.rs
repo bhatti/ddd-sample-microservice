@@ -169,18 +169,18 @@ impl HoldRepository for DDBHoldRepository {
 impl From<&HashMap<String, AttributeValue>> for HoldEntity {
     fn from(map: &HashMap<String, AttributeValue>) -> Self {
         HoldEntity {
-            hold_id: parse_string_attribute("hold_id", map).unwrap_or(String::from("")),
+            hold_id: parse_string_attribute("hold_id", map).unwrap_or_else(|| String::from("")),
             version: parse_number_attribute("version", map),
-            branch_id: parse_string_attribute("branch_id", map).unwrap_or(String::from("")),
-            book_id: parse_string_attribute("book_id", map).unwrap_or(String::from("")),
-            patron_id: parse_string_attribute("patron_id", map).unwrap_or(String::from("")),
-            hold_status: HoldStatus::from(parse_string_attribute("hold_status", map).unwrap_or(HoldStatus::OnHold.to_string())),
-            hold_at: parse_date_attribute("hold_at", map).unwrap_or(Utc::now().naive_utc()),
-            expires_at: parse_date_attribute("expires_at", map).unwrap_or(Utc::now().naive_utc()),
+            branch_id: parse_string_attribute("branch_id", map).unwrap_or_else(|| String::from("")),
+            book_id: parse_string_attribute("book_id", map).unwrap_or_else(|| String::from("")),
+            patron_id: parse_string_attribute("patron_id", map).unwrap_or_else(|| String::from("")),
+            hold_status: HoldStatus::from(parse_string_attribute("hold_status", map).unwrap_or_else(|| HoldStatus::OnHold.to_string())),
+            hold_at: parse_date_attribute("hold_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+            expires_at: parse_date_attribute("expires_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
             canceled_at: parse_date_attribute("canceled_at", map),
             checked_out_at: parse_date_attribute("checked_out_at", map),
-            created_at: parse_date_attribute("created_at", map).unwrap_or(Utc::now().naive_utc()),
-            updated_at: parse_date_attribute("updated_at", map).unwrap_or(Utc::now().naive_utc()),
+            created_at: parse_date_attribute("created_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
+            updated_at: parse_date_attribute("updated_at", map).unwrap_or_else(|| Utc::now().naive_utc()),
         }
     }
 }
